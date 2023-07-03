@@ -28,18 +28,34 @@ const morganConfig = morgan(function (token, req, res){
     ].join(" ");
 });
 
-//Middlewares
+//Middleware
 app.use(express.json());
 app.use(morganConfig)
 
 const sequelize = require('./config/db.config')
 
 // Define routes here
+const usersRoute = require('./routes/users.route')
+const usersRelRoute = require('./routes/usersRelationship.route')
+const circlesRoute = require('./routes/circles.route')
+const circleMemberRoute = require('./routes/circleMembers.route')
+const chatroomsRoute = require('./routes/chatrooms.route')
+const chatroomMemberRoute = require('./routes/chatroomMembers.route')
+const messagesRoute = require('./routes/messages.route')
 
 
+app.use('/users', usersRoute)
+app.use('/usersRelationship', usersRelRoute)
+app.use('/circles', circlesRoute)
+app.use('/circles', circleMemberRoute)
+app.use('/circles', chatroomsRoute)
+app.use('/circles', chatroomMemberRoute)
+app.use('/messages', messagesRoute)
 
-
-
+// Health check
+app.get('/', (req,res)=>{
+    res.send(`Health OK : `, process.env.NODE_ENV)
+})
 
 
 //Start the server
