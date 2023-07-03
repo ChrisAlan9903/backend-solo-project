@@ -68,6 +68,6 @@ app.listen( PORT,async ()=>{
         console.log("Connection has been established successfully.0")
         console.log( `🏎️ Server is running on PORT${port}`)
     } catch (error) {
-        econsole.log("Unable to connect to database:", error);
+        console.log("Unable to connect to database:", error);
     }
 })
