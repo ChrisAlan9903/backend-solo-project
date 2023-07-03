@@ -1,7 +1,7 @@
 const CircleMembers = require("../models/CircleMembers");
 
 // GET request here
-async function getAllCircleMembers() {
+async function getAllCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
     if (role === "admin"){
@@ -24,7 +24,7 @@ async function getAllCircleMembers() {
 
 
 // CREATE request here
-async function createCircleMembers() {
+async function createCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
     if(role !== "creator"){}
@@ -39,7 +39,7 @@ async function createCircleMembers() {
 
 
 // UPDATE request here
-async function updateCircleMembers() {
+async function updateCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
     if(role !== "creator"|| "admin"){}
@@ -60,7 +60,7 @@ async function updateCircleMembers() {
 
 
 // DELETE request here
-async function deleteCircleMembers() {
+async function deleteCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
     if(role !== "admin" || "creator"){}
@@ -86,3 +86,5 @@ module.exports = {
     updateCircleMembers,
     deleteCircleMembers,
 }
+
+// have not added get member by id yet. 
