@@ -62,7 +62,7 @@ CREATE TABLE chatrooms (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (circle_id) REFERENCES circles(id),
-    FOREIGN KEY (creator_id) REFERENCES chatroom_members(id),
+    -- FOREIGN KEY (creator_id) REFERENCES chatroom_members(id),
     UNIQUE (chatroom_title,circle_id)
 
 );
@@ -75,10 +75,18 @@ CREATE TABLE chatroom_members (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (member_id) REFERENCES users(id),
-    FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id),
+    -- FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id),
     UNIQUE (member_id,chatroom_id)
 
 );
+
+ALTER TABLE chatrooms
+ADD CONSTRAINT FK_chatrooms_chatroom_members
+FOREIGN KEY (creator_id) REFERENCES chatroom_members(id);
+
+ALTER TABLE chatroom_members
+ADD CONSTRAINT FK_chatroom_members_chatrooms
+FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id);
 
 
 CREATE TABLE messages (
