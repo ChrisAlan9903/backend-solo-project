@@ -52,7 +52,7 @@ const CircleMembers = sequelize.define(
         fields: ["member_id", "circle_id)"],
       },
     ],
-    tableName: "users_relationship",
+    tableName: "circle_members",
     timestamps: false,
   }
 );
