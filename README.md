@@ -43,7 +43,7 @@
     - Users cannot view other users Circle  
     - Admin can view all users Circle 
 - (PUT)
-    - Users can only update their Circle  
+    - Circle-creator can only update their Circle  
     - Users cannot update other users Circle 
     - Admin all also can 🤣🤣
 - (DELETE)
