@@ -18,7 +18,7 @@ async function getChatroomMemberById(req,res){
     try {
     // TODO: add authorization here--⚠️⚠️
         
-    const chatroomMember = await ChatroomMember.findByPk(parseInt(req.params.chatroomId))
+    const chatroomMember = await ChatroomMember.findByPk(parseInt(req.params.chatroomMemberId))
     res.json(chatroomMember)
         
     } catch (error) {
