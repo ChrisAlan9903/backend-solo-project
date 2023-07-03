@@ -6,7 +6,7 @@ async function getAllChatrooms(req,res){
     // TODO: add authorization here--⚠️⚠️
 
         const chatrooms = await Chatrooms.findAll()
-        res.json()
+        res.json(chatrooms)
         
     } catch (error) {
         res.status(500).json({ error: error });  
@@ -35,6 +35,7 @@ async function createChatrooms(req,res){
     const chatroom = await Chatrooms.create({
         ...req.body
     })
+    res.json(chatroom)
     } catch (error) {
         res.status(500).json({ error: error });  
 
@@ -73,4 +74,12 @@ async function deleteChatrooms(req,res){
         res.status(500).json({ error: error });  
 
 }
+}
+
+module.exports = {
+    getAllChatrooms,
+    getChatroomById,
+    createChatrooms,
+    updateChatrooms,
+    deleteChatrooms,
 }
