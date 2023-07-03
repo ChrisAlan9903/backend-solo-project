@@ -1,4 +1,4 @@
-const ChatroomMember = require('../models/Chatrooms')
+const ChatroomMember = require('../models/ChatroomMembers')
 
 // GET request here
 async function getAllChatroomMember(req,res){
