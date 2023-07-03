@@ -51,7 +51,7 @@ const UsersRelationship = sequelize.define(
         fields: ["user_id", "related_user_id)"],
       },
     ],
-    tableName: "replies",
+    tableName: "users_relationship",
     timestamps: false,
   }
 );
