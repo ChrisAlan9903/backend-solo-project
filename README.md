@@ -55,7 +55,7 @@
 - (CREATE)
     - Circle-creator  can add new Circle-Member
 - (GET)
-    - Users can view other Circle-Member in the same Circle
+    - Users and Creator can view other Circle-Member in the same Circle
     - Admin can view other Circle-Member even if not in the Circle
 - (PUT)
     - Circle-admin users can update Circle-Member details 
@@ -63,6 +63,7 @@
     - Admin all also can 🤣🤣
 - (DELETE)
     - Circle-admin users can delete Circle-Member 
+    - Users can only delete themselves 
     - Users cannot delete other Circle-Member 
     - Admin apa pun boleh 🤣🤣
 
@@ -111,3 +112,11 @@
     - Only Sender-user can delete Messages 
     - Users cannot delete other Sender-user Message 
     - Admin apa pun boleh 🤣🤣
+
+
+# To Take NOTE:
+- for params, 
+    1. user id = userId
+    2. circle id = circleId
+    3. circle member id = circleMemberId
+    4. 
