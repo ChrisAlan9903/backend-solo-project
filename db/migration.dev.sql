@@ -6,7 +6,7 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL, 
-    dm_access BOOLEAN NOT NULL DEFAULT false,
+    dm_access BOOLEAN DEFAULT false,
     role VARCHAR(255) DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -63,7 +63,7 @@ CREATE TABLE chatrooms (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (circle_id) REFERENCES circles(id),
-    -- FOREIGN KEY (creator_id) REFERENCES chatroom_members(id),
+    FOREIGN KEY (creator_id) REFERENCES users(id),
     UNIQUE (chatroom_title,circle_id)
 
 );
@@ -76,18 +76,18 @@ CREATE TABLE chatroom_members (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (member_id) REFERENCES users(id),
-    -- FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id),
+    FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id),
     UNIQUE (member_id,chatroom_id)
 
 );
 
-ALTER TABLE chatrooms
-ADD CONSTRAINT FK_Chatrooms_Chatroom_Members
-FOREIGN KEY (creator_id) REFERENCES chatroom_members(id);
+-- ALTER TABLE chatrooms
+-- ADD CONSTRAINT FK_Chatrooms_Chatroom_Members
+-- FOREIGN KEY (creator_id) REFERENCES chatroom_members(id);
 
-ALTER TABLE chatroom_members
-ADD CONSTRAINT FK_Chatroom_Members_Chatroom
-FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id);
+-- ALTER TABLE chatroom_members
+-- ADD CONSTRAINT FK_Chatroom_Members_Chatroom
+-- FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id);
 
 
 CREATE TABLE messages (
