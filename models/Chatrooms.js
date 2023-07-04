@@ -10,7 +10,7 @@ const Chatrooms = sequelize.define(
       autoIncrement: true,
       field: "id",
     },
-    chatroomsTitle:{
+    chatroomTitle:{
         type: DataTypes.STRING,
         allowNull:false,
         field:'chatroom_title'
@@ -28,7 +28,7 @@ const Chatrooms = sequelize.define(
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "chatroom_members",
+          model: "users",
           key: "id",
         },
         field: "creator_id",
