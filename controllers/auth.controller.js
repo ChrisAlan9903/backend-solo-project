@@ -1,6 +1,6 @@
 // User Registration and Authentication
-//  - Implement user registration
-//  - Implement user login (with token)
+//  - Implement user registration ✅
+//  - Implement user login (with token) ✅
 //  - Implement email verification upon registration 
 
 const jwt = require("jsonwebtoken")
