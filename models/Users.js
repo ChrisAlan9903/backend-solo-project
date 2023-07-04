@@ -31,6 +31,12 @@ const Users = sequelize.define(
             defaultValue: false,
             field:"dm_access"
         },
+        role:{
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "user",
+            field:"role"
+        },
         createdAt:{
             type:DataTypes.DATE,
             allowNull:true,
