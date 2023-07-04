@@ -42,6 +42,7 @@ const circleMemberRoute = require('./routes/circleMembers.route')
 const chatroomsRoute = require('./routes/chatrooms.route')
 const chatroomMemberRoute = require('./routes/chatroomMembers.route')
 const messagesRoute = require('./routes/messages.route')
+const authRoute = require ('./routes/auth.route')
 
 
 app.use('/users', usersRoute)
@@ -51,7 +52,7 @@ app.use('/circles', circleMemberRoute)
 app.use('/circles', chatroomsRoute)
 app.use('/circles', chatroomMemberRoute)
 app.use('/messages', messagesRoute)
-app.use('/auth',)
+app.use('/auth', authRoute)
 
 // Health check
 app.get('/', (req,res)=>{
