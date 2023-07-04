@@ -1,5 +1,5 @@
 const User = require("../models/Users");
-const { hashPassword } = require("../utils/bcrypt.util");
+const { hashPassword } = require("../utils/bcrypt.util.js");
 
 async function getAllUsers(req, res) {
   try {
@@ -25,13 +25,13 @@ async function createUser(req, res) {
     console.log(`password:`,req.body.password);
     console.log(`checkpoint 1`);
     
-    // const hashedPassword = hashPassword(req.body.password);
-    // console.log(` hashed password:`,hashedPassword);
+    const hashedPassword = hashPassword(req.body.password);
+    console.log(` hashed password:`,hashedPassword);
     console.log(`checkpoint 2`);
 
     const user = await User.create({
       ...req.body,
-      password: req.body.password,
+      password: hashedPassword,
     });
     console.log(`checkpoint 3`);
 
@@ -73,7 +73,7 @@ async function deleteUser(req, res) {
         id: parseInt(req.params.userId),
       },
     });
-    res.json(deletedUser);a
+    res.json(deletedUser);
   } catch (error) {
     res.status(500).json({ error: error });
   }

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 
 function hashPassword(password){
+    console.log(`checkpoint 4:`, password);
     return bcrypt.hashSync(password, saltRounds)
 }
 
