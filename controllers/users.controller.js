@@ -22,13 +22,19 @@ async function getUserById(req, res) {
 async function createUser(req, res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-
-    const hashedPassword = hashPassword(req.body.password);
+    console.log(`password:`,req.body.password);
+    console.log(`checkpoint 1`);
+    
+    // const hashedPassword = hashPassword(req.body.password);
+    // console.log(` hashed password:`,hashedPassword);
+    console.log(`checkpoint 2`);
 
     const user = await User.create({
       ...req.body,
-      password: hashedPassword,
+      password: req.body.password,
     });
+    console.log(`checkpoint 3`);
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: error });

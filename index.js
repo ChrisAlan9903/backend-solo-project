@@ -54,19 +54,19 @@ app.use('/messages', messagesRoute)
 
 // Health check
 app.get('/', (req,res)=>{
-    res.send(`Health OK : `, process.env.NODE_ENV)
+    res.status(200).send({message: `OK : ${process.env.NODE_ENV}`})
 })
 
 
 //Start the server
 
 const port = process.env.PORT || 3000;
-app.listen( PORT,async ()=>{
+app.listen(port,async ()=>{
 
     try {
         await sequelize.authenticate();
         console.log("Connection has been established successfully.0")
-        console.log( `🏎️ Server is running on PORT${port}`)
+        console.log( `🏎️ Server is running on PORT ${port}`)
     } catch (error) {
         console.log("Unable to connect to database:", error);
     }
