@@ -51,6 +51,7 @@ app.use('/circles', circleMemberRoute)
 app.use('/circles', chatroomsRoute)
 app.use('/circles', chatroomMemberRoute)
 app.use('/messages', messagesRoute)
+app.use('/auth',)
 
 // Health check
 app.get('/', (req,res)=>{
