@@ -45,7 +45,7 @@ async function createUser(req, res) {
 async function updateUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
-    if(req.user.id !== req.params.userId && req.user.role !== "admin"){
+    if(req.user.id !== parseInt(req.params.userId) && req.user.role !== "admin"){
       throw `Cannot update other user !`
     }
 
@@ -69,8 +69,11 @@ async function updateUser(req, res) {
 
 async function deleteUser(req, res) {
   try {
+    console.log(`req id:`, req.user.id);
+    console.log(`delete id:`, req.params.userId);
+
     // TODO: add authorization here---⚠️⚠️
-    if(req.user.id !== req.params.userId && req.user.role !== "admin"){
+    if(req.user.id !== parseInt(req.params.userId) && req.user.role !== "admin"){
       throw `Cannot update other user !`
     }
 

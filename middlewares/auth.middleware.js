@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken')
 
 function verifyToken (req, res, next){
     // Get auth header value
-    const token = req.headers["Authorization"]
+    const token = req.headers["authorization"]
 
     try {
+        console.log(`token`, token);
         // Check if token is provided
         if(!token) throw `No token provided !`
 
