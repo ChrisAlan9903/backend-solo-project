@@ -45,6 +45,9 @@ async function createUser(req, res) {
 async function updateUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
+    if(req.user.id !== req.params.userId && req.user.role !== "admin"){
+      throw `Cannot update other user !`
+    }
 
     const hashedPassword = hashPassword(req.body.password);
     const updatedUser = await User.update(
@@ -67,6 +70,9 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
+    if(req.user.id !== req.params.userId && req.user.role !== "admin"){
+      throw `Cannot update other user !`
+    }
 
     const deletedUser = await User.destroy({
       where: {
@@ -77,6 +83,7 @@ async function deleteUser(req, res) {
   } catch (error) {
     res.status(500).json({ error: error });
   }
+
 }
 
 module.exports = {
