@@ -6,22 +6,10 @@ async function getAllCircle(req, res) {
     // TODO: add authorization here--⚠️⚠️
 
     //⚠️⚠️to be updated
-    if (role === "admin") {
+  
       const circles = await Circle.findAll();
       res.json(circles);
-    } else {
-      const circleMembers = await CircleMembers.findAll({
-        where: {
-          memberId: parseInt(req.user.id),
-        },
-        include: ["Circles"],
-      });
-
-      const circles = circleMembers.map((circleMember) => {
-        return circleMember.Circles;
-      });
-      res.json(circles);
-    }
+ 
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -39,20 +27,19 @@ async function createCircle(req, res) {
 
 async function updateCircle(req, res) {
   // TODO: add authorization here--⚠️⚠️
-  if (role !== "admin" || role !== "creator") {
-    return `Unauthorized`;
-  } else {
+ 
     try {
-      const updateCircle = await Circle.update(req.body, {
+      const updatedCircle = await Circle.update(req.body, {
         where: {
           id: parseInt(req.params.circleId),
         },
       });
+      res.json(updatedCircle)
     } catch (error) {
       res.status(500).json({ error: error });
     }
   }
-}
+
 
 async function deleteCircle(req, res) {
     try {
