@@ -44,7 +44,7 @@ const messagesRoute = require('./routes/messages.route')
 // const chatroomsRoute = require('./routes/chatrooms.route')
 // const chatroomMemberRoute = require('./routes/chatroomMembers.route')
 
-app.use('/', authRoute)
+app.use('/auth', authRoute)
 app.use('/users', usersRoute)
 app.use('/users/:userId/circle', circlesRoute)
 app.use('/users/:userId/circle/:circleId/circleMembers', circleMemberRoute)
