@@ -29,7 +29,10 @@ async function createUser(req, res) {
       ...req.body,
       password: hashedPassword,
     });
-    res.json(user);
+
+    const userRespondObject = { ...user}
+    delete userRespondObject.password // to delete the password property from the object
+    res.json(userRespondObject);
   } catch (error) {
     res.status(500).json({ error: error });
   }
