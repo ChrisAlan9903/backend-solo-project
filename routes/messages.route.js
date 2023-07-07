@@ -12,3 +12,4 @@ router.put('/:messageId', messagesController.updateMessage)
 router.delete('/:messageId', messagesController.deleteMessage)
 
 module.exports = router
+
