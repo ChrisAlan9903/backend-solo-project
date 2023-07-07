@@ -4,21 +4,29 @@ const CircleMembers = require("../models/CircleMembers");
 async function getAllCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-    if (role === "admin"){
+  
         const circleMembers = await CircleMembers.findAll()
         res.json(circleMembers)
-    }else{
-        const circleMembers = await CircleMembers.findAll({
-            where:{
-                circleId: req.body.circleId
-            }
-        })
-        res.json(circleMembers)
-    }
-
 
   } catch (error) {
     res.status(500).json({ error: error });
+  }
+}
+
+// GET by id request here
+async function getCircleById(req,res){
+  try {
+    
+    const circleMember = await CircleMembers.findByPk({
+      where:{
+        id:parseInt(req.params.circleMemberId)
+      }
+    })
+
+    res.json(circleMember)
+  } catch (error) {
+    res.status(500).json({ error: error });
+    
   }
 }
 
@@ -27,7 +35,7 @@ async function getAllCircleMembers(req,res) {
 async function createCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-    if(role !== "creator"){}
+
     const createdUser = await CircleMembers.create({
         ...req.body,
     })
@@ -42,7 +50,7 @@ async function createCircleMembers(req,res) {
 async function updateCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-    if(role !== "creator"|| "admin"){}
+   
 
     const updatedCircleMember = await CircleMembers.update({
         ...req.body
@@ -63,9 +71,6 @@ async function updateCircleMembers(req,res) {
 async function deleteCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-    if(role !== "admin" || "creator"){}
-    else if (user !== "user"){}
-    else{}
     const deletedCircleMember = await CircleMembers.destroy({
         where:{
             id: parseInt(req.params.circleMemberId)
