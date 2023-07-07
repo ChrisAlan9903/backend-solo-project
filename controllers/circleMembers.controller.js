@@ -14,7 +14,7 @@ async function getAllCircleMembers(req,res) {
 }
 
 // GET by id request here
-async function getCircleById(req,res){
+async function getCircleMemberById(req,res){
   try {
     
     const circleMember = await CircleMembers.findByPk({
@@ -87,6 +87,7 @@ async function deleteCircleMembers(req,res) {
 
 module.exports = {
     getAllCircleMembers,
+    getCircleMemberById,
     createCircleMembers,
     updateCircleMembers,
     deleteCircleMembers,
