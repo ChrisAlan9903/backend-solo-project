@@ -6,7 +6,7 @@ const circleMembersController = require('../controllers/circleMembers.controller
 
 // add route endpoint here
 router.get('/', circleMembersController.getAllCircleMembers)
-router.get('/', circleMembersController.getCircleMemberById)
+router.get('/:circleMemberId', circleMembersController.getCircleMemberById)
 router.post('/', circleMembersController.createCircleMembers)
 router.put('/:circleMemberId', circleMembersController.updateCircleMembers)
 router.delete('/:circleMemberId', circleMembersController.deleteCircleMembers)
