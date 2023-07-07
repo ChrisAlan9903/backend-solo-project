@@ -74,7 +74,7 @@ async function deleteUser(req, res) {
 
     // TODO: add authorization here---⚠️⚠️
     if(req.user.id !== parseInt(req.params.userId) && req.user.role !== "admin"){
-      throw `Cannot update other user !`
+      throw `Cannot delete other user !`
     }
 
     const deletedUser = await User.destroy({

@@ -23,6 +23,7 @@ const Chatrooms = sequelize.define(
         key: "id",
       },
       field: "circle_id",
+      onDelete: 'CASCADE'
     },
     creatorId: {
         type: DataTypes.INTEGER,
@@ -32,6 +33,8 @@ const Chatrooms = sequelize.define(
           key: "id",
         },
         field: "creator_id",
+      onDelete : "CASCADE",
+
       },
     createdAt: {
       type: DataTypes.DATE,

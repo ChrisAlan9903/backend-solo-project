@@ -18,6 +18,8 @@ const UsersRelationship = sequelize.define(
         key: "id",
       },
       field: "user_id",
+      onDelete : "CASCADE",
+
     },
     relatedUserId: {
       type: DataTypes.INTEGER,
@@ -27,6 +29,8 @@ const UsersRelationship = sequelize.define(
         key: "id",
       },
       field: "related_user_id",
+      onDelete : "CASCADE",
+
     },
     relationshipType:{
         type:DataTypes.STRING,

@@ -23,6 +23,7 @@ const Circles = sequelize.define(
         key: "id",
       },
       field: "creator_id",
+      onDelete : "CASCADE"
     },
     isActive: {
       type: DataTypes.BOOLEAN,

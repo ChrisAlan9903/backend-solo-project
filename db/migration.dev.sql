@@ -17,12 +17,12 @@ CREATE TABLE users (
 CREATE TABLE circles (
     id INT NOT NULL AUTO_INCREMENT,
     circle_title VARCHAR(255) NOT NULL,
-    creator_id INT NOT NULL,
+    creator_id INT NOT NULL ,
     is_active BOOLEAN DEFAULT false,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (creator_id) REFERENCES users(id)
+    FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE CASCADE
 
 );
 
@@ -34,8 +34,8 @@ CREATE TABLE circle_members (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (member_id) REFERENCES users(id),
-    FOREIGN KEY (circle_id) REFERENCES circles(id),
+    FOREIGN KEY (member_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (circle_id) REFERENCES circles(id) ON DELETE CASCADE,
     UNIQUE (member_id,circle_id)
 
 );
@@ -48,8 +48,8 @@ CREATE TABLE users_relationship (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (related_user_id) REFERENCES users(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (related_user_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE (user_id,related_user_id)
 
 );
@@ -62,8 +62,8 @@ CREATE TABLE chatrooms (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (circle_id) REFERENCES circles(id),
-    FOREIGN KEY (creator_id) REFERENCES users(id),
+    FOREIGN KEY (circle_id) REFERENCES circles(id) ON DELETE CASCADE,
+    FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE (chatroom_title,circle_id)
 
 );
@@ -75,8 +75,8 @@ CREATE TABLE chatroom_members (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (member_id) REFERENCES users(id),
-    FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id),
+    FOREIGN KEY (member_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id) ON DELETE CASCADE,
     UNIQUE (member_id,chatroom_id)
 
 );
@@ -101,7 +101,7 @@ CREATE TABLE messages (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES users(id),
     FOREIGN KEY (circle_id) REFERENCES circles(id),
     FOREIGN KEY (chatroom_id) REFERENCES chatrooms(id)

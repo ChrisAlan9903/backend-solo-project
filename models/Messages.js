@@ -18,6 +18,8 @@ const Messages = sequelize.define(
         key: "id",
       },
       field: "sender_id",
+      onDelete : "CASCADE",
+
     },
     receiverId: {
       type: DataTypes.INTEGER,

@@ -22,6 +22,7 @@
 ## Users Relationship
 - (CREATE)
     - Users can create new relationship with other users
+    - Users cannot create new relationship with themselves.
 - (GET)
     - Users can view their own relationship data
     - Users cannot view other users relationship data 
@@ -53,12 +54,12 @@
 
 ## Circle Members
 - (CREATE)
-    - Circle-creator  can add new Circle-Member
+    - Circle-creator and admin can add new Circle-Member
 - (GET)
     - Users and Creator can view other Circle-Member in the same Circle
     - Admin can view other Circle-Member even if not in the Circle
 - (PUT)
-    - Circle-admin users can update Circle-Member details 
+    - Circle-creator and admin can update Circle-Member details 
     - Circle Non-admin users cannot update other Circle-Member details 
     - Admin all also can 🤣🤣
 - (DELETE)
