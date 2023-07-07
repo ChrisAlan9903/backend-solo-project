@@ -11,7 +11,7 @@ const Users = sequelize.define(
         },
         username:{
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             field:"username"
         },
         email:{
@@ -25,9 +25,21 @@ const Users = sequelize.define(
             allowNull: false,
             field:"password"
         },
+        role:{
+            type: DataTypes.ENUM(['admin','user']),
+            allowNull: true,
+            defaultValue: 'user',
+            field: 'role'
+        },
+        isVerified:{
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false,
+            field:"is_verified"
+        },
         dmAccess:{
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
             defaultValue: false,
             field:"dm_access"
         },
