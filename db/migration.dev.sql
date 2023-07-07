@@ -1,5 +1,5 @@
-CREATE DATABASE backend_solo_project_dev;
-use backend_solo_project_dev;
+CREATE DATABASE backend_solo_project_v2_dev;
+use backend_solo_project_v2_dev;
 
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
