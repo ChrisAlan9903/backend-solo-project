@@ -36,21 +36,21 @@ const sequelize = require('./config/db.config')
 
 // Define routes here
 const usersRoute = require('./routes/users.route')
-const usersRelRoute = require('./routes/usersRelationship.route')
 const circlesRoute = require('./routes/circles.route')
 const circleMemberRoute = require('./routes/circleMembers.route')
+const messagesRoute = require('./routes/messages.route')
+const usersRelRoute = require('./routes/usersRelationship.route')
 const chatroomsRoute = require('./routes/chatrooms.route')
 const chatroomMemberRoute = require('./routes/chatroomMembers.route')
-const messagesRoute = require('./routes/messages.route')
 
 
 app.use('/users', usersRoute)
-app.use('/usersRelationship', usersRelRoute)
-app.use('/circles', circlesRoute)
-app.use('/circles', circleMemberRoute)
-app.use('/circles', chatroomsRoute)
-app.use('/circles', chatroomMemberRoute)
-app.use('/messages', messagesRoute)
+app.use('/users/:userId/circle', circlesRoute)
+app.use('//users/:userId/circle/:circleId/circleMembers', circleMemberRoute)
+app.use('/users/:userId/messages', messagesRoute)
+// app.use('/usersRelationship', usersRelRoute)
+// app.use('/circles', chatroomsRoute)
+// app.use('/circles', chatroomMemberRoute)
 
 // Health check
 app.get('/', (req,res)=>{
