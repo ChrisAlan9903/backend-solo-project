@@ -13,7 +13,7 @@ VALUES
   ('USER 8', 'user8@gmail.com', '123456', NULL);
  
 -- circles
-INSERT INTO circles (circleTitle, creatorId)
+INSERT INTO circles (circle_title, creator_id)
 VALUES
   ('Circle: ADMIN1 1', 1),
   ('Circle: ADMIN1 2', 1),
@@ -25,7 +25,7 @@ VALUES
   ('Circle: USER3 B', 3);
 
 --   circle_members
-INSERT INTO circle_members (memberId, circleId, memberRole)
+INSERT INTO circle_members (member_id, circle_id, member_role)
 VALUES
   (1, 1, 'circle_admin'),
   (2, 1, NULL),
@@ -38,7 +38,7 @@ VALUES
   (7, 6, NULL);
 
 -- messages
-INSERT INTO messages (senderId, receiverId, content, isDm, circleId)
+INSERT INTO messages (sender_id, receiver_id, content, is_dm, circle_id)
 VALUES
   (1, 2, 'Test temporary dm to delete later', true, NULL),
   (3, NULL, 'Test temporary circle 1 to delete later', false, 1),
