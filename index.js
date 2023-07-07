@@ -35,6 +35,7 @@ app.use(morganConfig)
 const sequelize = require('./config/db.config')
 
 // Define routes here
+const authRoute = require('./routes/auth.route')
 const usersRoute = require('./routes/users.route')
 const circlesRoute = require('./routes/circles.route')
 const circleMemberRoute = require('./routes/circleMembers.route')
@@ -43,7 +44,7 @@ const messagesRoute = require('./routes/messages.route')
 // const chatroomsRoute = require('./routes/chatrooms.route')
 // const chatroomMemberRoute = require('./routes/chatroomMembers.route')
 
-
+app.use('/', authRoute)
 app.use('/users', usersRoute)
 app.use('/users/:userId/circle', circlesRoute)
 app.use('/users/:userId/circle/:circleId/circleMembers', circleMemberRoute)
