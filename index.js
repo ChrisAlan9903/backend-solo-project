@@ -62,7 +62,7 @@ app.get('/', (req,res)=>{
 //Start the server
 
 const port = process.env.PORT || 3000;
-app.listen( PORT,async ()=>{
+app.listen( port,async ()=>{
 
     try {
         await sequelize.authenticate();
