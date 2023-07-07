@@ -5,10 +5,11 @@ const circleMembersController = require('../controllers/circleMembers.controller
 // TODO: Add middleware declaration here
 
 // add route endpoint here
-router.get('/circleMember', circleMembersController.getAllCircleMembers)
-router.post('/circleMember', circleMembersController.createCircleMembers)
-router.put('/circleMember/:circleMemberId', circleMembersController.updateCircleMembers)
-router.delete('/circleMember/:circleMemberId', circleMembersController.deleteCircleMembers)
+router.get('/', circleMembersController.getAllCircleMembers)
+router.get('/', circleMembersController.getCircleMemberById)
+router.post('/', circleMembersController.createCircleMembers)
+router.put('/:circleMemberId', circleMembersController.updateCircleMembers)
+router.delete('/:circleMemberId', circleMembersController.deleteCircleMembers)
 
 
 module.exports = router
