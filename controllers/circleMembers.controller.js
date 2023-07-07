@@ -17,11 +17,7 @@ async function getAllCircleMembers(req,res) {
 async function getCircleMemberById(req,res){
   try {
     
-    const circleMember = await CircleMembers.findByPk({
-      where:{
-        id:parseInt(req.params.circleMemberId)
-      }
-    })
+    const circleMember = await CircleMembers.findByPk(parseInt(req.params.circleMemberId))
 
     res.json(circleMember)
   } catch (error) {
