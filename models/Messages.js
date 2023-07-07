@@ -10,6 +10,11 @@ const Messages = sequelize.define(
       autoIncrement: true,
       field: "id",
     },
+    content:{
+      type:DataTypes.STRING,
+      allowNull: false,
+      field: "content"
+  },
     senderId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -28,11 +33,12 @@ const Messages = sequelize.define(
       },
       field: "receiver_id",
     },
-    content:{
-        type:DataTypes.STRING,
-        allowNull: false,
-        field: "content"
-    },
+    isDm:{
+      type: DataTypes.BOOLEAN,
+      allowNull:true,
+      defaultValue: false,
+      field: "is_dm"
+  },
     circleId: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -41,20 +47,7 @@ const Messages = sequelize.define(
         key: "id",
       },
       field: "circle_id",
-    },
-    chatroomId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "chatrooms",
-        key: "id",
-      },
-      field: "chatroom_id",
-    },
-    isDm:{
-        type: DataTypes.BOOLEAN,
-        allowNull:true,
-        field: "is_dm"
+      onDelete: 'CASCADE'
     },
     createdAt: {
       type: DataTypes.DATE,
