@@ -18,6 +18,7 @@ const CircleMembers = sequelize.define(
         key: "id",
       },
       field: "member_id",
+      onDelete: 'CASCADE'
     },
     circleId: {
       type: DataTypes.INTEGER,
@@ -27,12 +28,13 @@ const CircleMembers = sequelize.define(
         key: "id",
       },
       field: "circle_id",
+      onDelete: 'CASCADE'
     },
-    isAdmin:{
-        type:DataTypes.BOOLEAN,
+    memberRole:{
+        type:DataTypes.ENUM(['circle_admin','circle_member']),
         allowNull:true,
-        defaultValue:false,
-        field: "is_admin"
+        defaultValue:'circle_member',
+        field: "member_role"
     },
     createdAt: {
       type: DataTypes.DATE,
