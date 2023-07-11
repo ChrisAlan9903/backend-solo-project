@@ -55,7 +55,8 @@ app.use('/users/:userId/messages', messagesRoute)
 
 // Health check
 app.get('/', (req,res)=>{
-    res.send(`Health OK : `, process.env.NODE_ENV)
+    res.status(200).send({message: `Health OK : ${ process.env.NODE_ENV}`})
+    // res.send(`Health OK : `, process.env.NODE_ENV)
 })
 
 
