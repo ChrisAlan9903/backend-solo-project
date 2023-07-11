@@ -30,9 +30,13 @@ async function createUser(req, res) {
       password: hashedPassword,
     });
 
-    const userRespondObject = { ...user}
-    delete userRespondObject.password // to delete the password property from the object
-    res.json(userRespondObject);
+    // console.log(`user: `, user);
+
+    // const userRespondObject = user
+    // console.log(`userRespondObject: `, userRespondObject);
+    // delete userRespondObject.password // to delete the password property from the object
+    // console.log(`userRespondObject after delete: `, userRespondObject);
+    res.json(user);
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -43,7 +47,9 @@ async function updateUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
 
+    // console.log(`CP 1`);
     const hashedPassword = hashPassword(req.body.password);
+    // console.log(`CP 2`);
     const updatedUser = await User.update(
       {
         ...req.body,
@@ -70,7 +76,7 @@ async function deleteUser(req, res) {
         id: parseInt(req.params.userId),
       },
     });
-    res.json(deletedUser);a
+    res.json(deletedUser);
   } catch (error) {
     res.status(500).json({ error: error });
   }
