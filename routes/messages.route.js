@@ -6,10 +6,11 @@ const messagesController = require('../controllers/messages.controller')
 
 // add route endpoint here
 router.get('/', messagesController.getAllMessages)
-router.get('/:messageId', messagesController.getMessageById)
+router.get('/:senderId', messagesController.getAllMessagesByUser)
+router.get('/message/:messageId', messagesController.getMessageById)
 router.post('/', messagesController.createMessage)
-router.put('/:messageId', messagesController.updateMessage)
-router.delete('/:messageId', messagesController.deleteMessage)
+router.put('/message/:messageId', messagesController.updateMessage)
+router.delete('/message/:messageId', messagesController.deleteMessage)
 
 module.exports = router
 
