@@ -4,8 +4,9 @@ const CircleMembers = require("../models/CircleMembers");
 async function getAllCircleMembers(req,res) {
   try {
     // TODO: add authorization here--⚠️⚠️
-  
+      
         const circleMembers = await CircleMembers.findAll()
+        console.log(`circleMembers:`, circleMembers);
         res.json(circleMembers)
 
   } catch (error) {
