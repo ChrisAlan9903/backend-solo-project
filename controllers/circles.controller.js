@@ -7,13 +7,35 @@ async function getAllCircle(req, res) {
 
     //⚠️⚠️to be updated
   
-      const circles = await Circle.findAll();
-      res.json(circles);
+
+    const circles = await Circle.findAll();
+    console.log(`CP 2`);
+    res.json(circles);
  
   } catch (error) {
     res.status(500).json({ error: error });
   }
 }
+async function getCirclesForUser(req,res){
+  try {
+    //add authorization here
+
+   const creatorId = req.params.creatorId
+   console.log(`creatorId:`, creatorId)
+
+   const userCircles = await Circle.findAll({
+    where:{
+      creatorId: creatorId
+    }
+   })
+   res.json(userCircles)
+
+    
+  } catch (error) {
+    res.status(500).json({ error: error });
+    
+  }
+} 
 
 async function createCircle(req, res) {
   try {
@@ -24,6 +46,7 @@ async function createCircle(req, res) {
     res.status(500).json({ error: error });
   }
 }
+
 
 async function updateCircle(req, res) {
   // TODO: add authorization here--⚠️⚠️
@@ -60,6 +83,7 @@ async function deleteCircle(req, res) {
 
 module.exports = {
     getAllCircle,
+    getCirclesForUser,
     createCircle,
     updateCircle,
     deleteCircle,

@@ -7,6 +7,7 @@ const circlesController = require('../controllers/circles.controller')
 // add route endpoint here
 
 router.get('/', circlesController.getAllCircle)
+router.get('/:creatorId', circlesController.getCirclesForUser)
 router.post('/', circlesController.createCircle)
 router.put('/:circleId', circlesController.updateCircle)
 router.delete('/:circleId', circlesController.deleteCircle)

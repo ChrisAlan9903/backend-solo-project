@@ -46,7 +46,7 @@ const messagesRoute = require('./routes/messages.route')
 
 app.use('/auth', authRoute)
 app.use('/users', usersRoute)
-app.use('/users/:userId/circle', circlesRoute)
+app.use('/circles', circlesRoute)
 app.use('/users/:userId/circle/:circleId/circleMembers', circleMemberRoute)
 app.use('/users/:userId/messages', messagesRoute)
 // app.use('/usersRelationship', usersRelRoute)
