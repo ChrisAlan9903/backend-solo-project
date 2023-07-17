@@ -46,6 +46,17 @@ async function createUser(req, res) {
 async function updateUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
+    // Permission: User can only update their own user data
+
+    const userId = req.user.id
+    console.log(`userId:`, userId);
+    const userRole = req.user.role
+    const paramsUserId = parseInt(req.params.userId)
+    console.log(`params:`, req.params.userId);
+    if (userRole !== 'admin') {
+      if(paramsUserId !== userId) throw `Update denied: Not your user data`
+    }
+
 
     // console.log(`CP 1`);
     const hashedPassword = hashPassword(req.body.password);
@@ -70,6 +81,16 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
+      // Permission: User can only delete their own user data
+
+    const userId = req.user.id
+    console.log(`userId:`, userId);
+    const userRole = req.user.role
+    const paramsUserId = parseInt(req.params.userId)
+    console.log(`params:`, req.params.userId);
+    if (userRole !== 'admin') {
+      if(paramsUserId !== userId) throw `Delete denied: Not your user data`
+    }
 
     const deletedUser = await User.destroy({
       where: {

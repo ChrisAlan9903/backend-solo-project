@@ -11,7 +11,7 @@ function verifyToken (req, res, next){
 
         // Verify & decode token
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
-
+        console.log(`decodedToken:`, decodedToken);
         // Set user in the request object
         req.user = decodedToken
     } catch (error) {
@@ -27,7 +27,7 @@ function checkRole(roles){
     return (req, res, next) =>{
 
         if (!roles.includes(req.user.role)){
-            return res.status(401).json({error: "Unauthorized"})
+            return res.status(401).json({error: "Unauthorized access"})
         }
 
         return next()
