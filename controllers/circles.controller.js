@@ -14,6 +14,7 @@ async function getAllCircle(req, res) {
     res.status(500).json({ error: error });
   }
 }
+
 async function getCirclesForUser(req, res) {
   try {
     //TODO: add authorization here
