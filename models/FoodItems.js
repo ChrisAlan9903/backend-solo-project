@@ -24,6 +24,10 @@ const FoodItems = sequelize.define(
     vendorId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "users",
+        key: "id",
+      },
     },
     imageLink: {
       type: DataTypes.STRING(255),
@@ -33,6 +37,10 @@ const FoodItems = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
       field: "categories_id",
+      references: {
+        model: "categories",
+        key: "id",
+      },
     },
     createdAt: {
       type: DataTypes.DATE,
