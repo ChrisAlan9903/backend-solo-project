@@ -1,34 +1,26 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
 
-const ChatroomMembers = sequelize.define(
-  "ChatroomMembers",
+const Orders = sequelize.define(
+  "Orders",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      field: "id",
     },
-    memberId: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "users",
-        key: "id",
-      },
-      field: "member_id",
     },
-    chatroomId: {
-      type: DataTypes.INTEGER,
+    totalAmount: {
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
-      references: {
-        model: "chatrooms",
-        key: "id",
-      },
-      field: "chatroom_id",
     },
-   
+    orderStatus: {
+      type: DataTypes.ENUM("pending", "completed", "cancelled"),
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -41,15 +33,9 @@ const ChatroomMembers = sequelize.define(
     },
   },
   {
-    indexes: [
-      {
-        unique: true,
-        fields: ["member_id", "chatroom_id)"],
-      },
-    ],
-    tableName: "chatroom_members",
+    tableName: "orders",
     timestamps: false,
   }
 );
 
-module.exports = ChatroomMembers;
+module.exports = Orders;

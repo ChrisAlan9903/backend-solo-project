@@ -1,34 +1,21 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
 
-const Circles = sequelize.define(
-  "Circles",
+const Categories = sequelize.define(
+  "Categories",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      field: "id",
     },
-    circleTitle: {
-      type: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING(255),
       allowNull: false,
-      field: "circle_title",
     },
-    creatorId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "users",
-        key: "id",
-      },
-      field: "creator_id",
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: true,
-      defaultValue: false,
-      field: "is_active",
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -42,9 +29,9 @@ const Circles = sequelize.define(
     },
   },
   {
-    tableName: "circles",
+    tableName: "categories",
     timestamps: false,
   }
 );
 
-module.exports = Circles;
+module.exports = Categories;
