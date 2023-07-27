@@ -19,7 +19,7 @@ const Vendors = sequelize.define(
     },
     vendorInfo: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     contactInfo: {
       type: DataTypes.STRING(255),
