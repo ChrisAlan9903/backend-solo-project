@@ -1,49 +1,42 @@
--- dummy data for development
+-- Dummy data for testing
 
--- users
-INSERT INTO users (username, email, password, role)
-VALUES
-  ('ADMIN 1', 'admin@gmail.com', '123456', 'admin'),
-  ('USER 2', 'user2@gmail.com', '123456', NULL),
-  ('USER 3', 'user3@gmail.com', '123456', NULL),
-  ('USER 4', 'user4@gmail.com', '123456', NULL),
-  ('USER 5', 'user5@gmail.com', '123456', NULL),
-  ('USER 6', 'user6@gmail.com', '123456', NULL),
-  ('USER 7', 'user7@gmail.com', '123456', NULL),
-  ('USER 8', 'user8@gmail.com', '123456', NULL);
- 
--- circles
-INSERT INTO circles (circle_title, creator_id)
-VALUES
-  ('Circle: ADMIN1 1', 1),
-  ('Circle: ADMIN1 2', 1),
-  ('Circle: USER2 1', 2),
-  ('Circle: USER2 2', 2),
-  ('Circle: USER2 3', 2),
-  ('Circle: USER3 A', 3),
-  ('Circle: USER3 B', 3),
-  ('Circle: USER3 B', 3);
 
---   circle_members
-INSERT INTO circle_members (member_id, circle_id, member_role)
-VALUES
-  (1, 1, 'circle_admin'),
-  (2, 1, NULL),
-  (3, 1, NULL),
-  (4, 1, NULL),
-  (5, 1, NULL),
-  (3, 6, 'circle_admin'),
-  (5, 6, NULL),
-  (6, 6, NULL),
-  (7, 6, NULL);
+-- Better create using log in Because of the hashedPassword
+INSERT INTO Users (username, email, password, role) VALUES
+('john_doe', 'john@example.com', 'hashed_password', 'customer'),
+('jane_smith', 'jane@example.com', 'hashed_password', 'customer'),
+('vendor1', 'vendor1@example.com', 'hashed_password', 'vendor'),
+('vendor2', 'vendor2@example.com', 'hashed_password', 'vendor');
 
--- messages
-INSERT INTO messages (sender_id, receiver_id, content, is_dm, circle_id)
-VALUES
-  (1, 2, 'Test temporary dm to delete later', true, NULL),
-  (3, NULL, 'Test temporary circle 1 to delete later', false, 1),
-  (3, NULL, 'Test temporary circle 1 to delete later 1', false, 1),
-  (4, NULL, 'Test temporary circle 1 to delete later 2', false, 1),
-  (5, NULL, 'Test temporary circle 6 to delete later A', false, 6),
-  (7, NULL, 'Test temporary circle 6 to delete later B', false, 6);
 
+INSERT INTO FoodItems (name, description, price, vendorId) VALUES
+('Cheeseburger', 'Delicious cheeseburger with beef patty.', 8.99, 3),
+('Pepperoni Pizza', 'Classic pizza with pepperoni toppings.', 12.99, 4),
+('Chicken Alfredo', 'Creamy chicken alfredo pasta.', 10.49, 3),
+('Chocolate Brownie', 'Decadent chocolate brownie dessert.', 5.99, 4);
+
+
+INSERT INTO Orders (userId, totalAmount, orderStatus) VALUES
+(1, 18.98, 'completed'),
+(2, 12.99, 'completed'),
+(1, 10.49, 'pending'),
+(2, 16.98, 'pending');
+
+
+INSERT INTO OrderItems (orderId, foodItemId, quantity, price) VALUES
+(1, 1, 2, 17.98),
+(2, 2, 1, 12.99),
+(3, 3, 1, 10.49),
+(4, 4, 2, 11.98);
+
+
+INSERT INTO Vendors (vendorName, address, contactInfo) VALUES
+('Vendor 1', '123 Main St, City, Country', 'vendor1@example.com'),
+('Vendor 2', '456 Oak Ave, Town, Country', 'vendor2@example.com');
+
+
+INSERT INTO Categories (name, description) VALUES
+('Burgers', 'Delicious burgers with various toppings.'),
+('Pizzas', 'Tasty pizzas with different flavors.'),
+('Pasta', 'Delightful pasta dishes for everyone.'),
+('Desserts', 'Sweet treats to satisfy your cravings.');

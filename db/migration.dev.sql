@@ -1,59 +1,67 @@
-CREATE DATABASE backend_solo_project_v2_dev;
-use backend_solo_project_v2_dev;
+CREATE DATABASE personal_project_backend_v2_dev;
+use personal_project_backend_v2_dev;
 
 CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(255),
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL, 
-    role ENUM('admin','user') DEFAULT 'user',
-    is_verified BOOLEAN DEFAULT false,
-    dm_access BOOLEAN DEFAULT false,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
-
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) ,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin','customer', 'vendor') DEFAULT 'customer' ,
+  address VARCHAR(255), 
+  is_verified BOOLEAN DEFAULT false,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE circles (
-    id INT NOT NULL AUTO_INCREMENT,
-    circle_title VARCHAR(255) NOT NULL,
-    creator_id INT NOT NULL,
-    is_active BOOLEAN DEFAULT false,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (creator_id) REFERENCES users(id)
-
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE circle_members (
-    id INT NOT NULL AUTO_INCREMENT,
-    member_id INT NOT NULL,
-    circle_id INT NOT NULL,
-    member_role ENUM('circle_admin','circle_member') DEFAULT 'circle_member',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (member_id) REFERENCES users(id) ON DELETE CASCADE, 
-    FOREIGN KEY (circle_id) REFERENCES circles(id) ON DELETE CASCADE,
-    UNIQUE (member_id,circle_id)
-
+CREATE TABLE food_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price DECIMAL(10, 2) NOT NULL,
+  vendorId INT NOT NULL,
+  imageLink VARCHAR(255),
+  categories_id INT,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (vendorId) REFERENCES users(id),
+  FOREIGN KEY (categories_id) REFERENCES categories(id)
 );
 
-
-CREATE TABLE messages (
-    id INT NOT NULL AUTO_INCREMENT,
-    content VARCHAR (255) NOT NULL,
-    sender_id INT NOT NULL,
-    receiver_id INT,
-    is_dm BOOLEAN DEFAULT false,
-    circle_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (sender_id) REFERENCES users(id),
-    FOREIGN KEY (receiver_id) REFERENCES users(id),
-    FOREIGN KEY (circle_id) REFERENCES circles(id) ON DELETE CASCADE
-
+CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  totalAmount DECIMAL(10, 2) NOT NULL,
+  orderStatus ENUM('pending', 'completed', 'cancelled') NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (userId) REFERENCES users(id)
 );
+
+CREATE TABLE order_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  orderId INT NOT NULL,
+  foodItemId INT NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  FOREIGN KEY (orderId) REFERENCES orders(id),
+  FOREIGN KEY (foodItemId) REFERENCES food_items(id)
+);
+
+CREATE TABLE vendors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  vendorName VARCHAR(255) NOT NULL,
+  address TEXT,
+  vendorInfo TEXT NOT NULL,
+  contactInfo VARCHAR(255),
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
