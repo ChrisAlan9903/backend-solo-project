@@ -45,7 +45,7 @@ const FoodItems = sequelize.define(
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: "created_at",
+      field: "createdAt",
     },
     updatedAt: {
       type: DataTypes.DATE,

@@ -13,35 +13,35 @@ const {
 router.get(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   vendorsController.getAllVendors
 );
 
 router.get(
   "/:vendorId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   vendorsController.getVendorById
 );
 
 router.post(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   vendorsController.createVendor
 );
 
 router.put(
   "/:vendorId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   vendorsController.updateVendor
 );
 
 router.delete(
   "/:vendorId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   vendorsController.deleteVendor
 );
 

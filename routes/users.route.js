@@ -13,35 +13,35 @@ const {
 router.get(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   usersController.getAllUsers
 );
 
 router.get(
   "/:userId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   usersController.getUserById
 );
 
 router.post(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   usersController.createUser
 );
 
 router.put(
   "/:userId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   usersController.updateUser
 );
 
 router.delete(
   "/:userId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   usersController.deleteUser
 );
 

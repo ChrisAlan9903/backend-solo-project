@@ -13,35 +13,35 @@ const {
 router.get(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   orderItemsController.getAllOrderItems
 );
 
 router.get(
   "/:orderItemId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   orderItemsController.getOrderItemById
 );
 
 router.post(
   "/",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   orderItemsController.createOrderItem
 );
 
 router.put(
   "/:orderItemId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   orderItemsController.updateOrderItem
 );
 
 router.delete(
   "/:orderItemId",
   verifyToken,
-  checkRole(["admin", "user", "vendor"]),
+  checkRole(["admin", "customer", "vendor"]),
   orderItemsController.deleteOrderItem
 );
 
