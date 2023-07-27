@@ -11,11 +11,9 @@ async function getAllCategories(req, res) {
 
 async function getCategoryById(req, res) {
   try {
-    const categories = await Categories.findByPk({
-      where: {
-        id: parseInt(req.params.categoryId),
-      },
-    });
+    const categories = await Categories.findByPk(
+      parseInt(req.params.categoryId)
+    );
     res.json(categories);
   } catch (error) {
     res.status(500).json({ error: error });
