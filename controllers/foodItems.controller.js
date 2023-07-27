@@ -11,11 +11,7 @@ async function getAllFoodItems(req, res) {
 
 async function getFoodItemById(req, res) {
   try {
-    const foods = await FoodItems.findByPk({
-      where: {
-        id: parseInt(req.params.foodId),
-      },
-    });
+    const foods = await FoodItems.findByPk(parseInt(req.params.foodId));
     res.json(foods);
   } catch (error) {
     res.status(500).json({ error: error });

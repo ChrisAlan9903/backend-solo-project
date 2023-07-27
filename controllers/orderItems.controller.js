@@ -11,11 +11,9 @@ async function getAllOrderItems(req, res) {
 
 async function getOrderItemById(req, res) {
   try {
-    const orderItem = await OrderItems.findByPk({
-      where: {
-        id: parseInt(req.params.orderItemId),
-      },
-    });
+    const orderItem = await OrderItems.findByPk(
+      parseInt(req.params.orderItemId)
+    );
     res.json(orderItem);
   } catch (error) {
     res.status(500).json({ error: error });

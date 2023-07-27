@@ -11,11 +11,7 @@ async function getAllVendors(req, res) {
 
 async function getVendorById(req, res) {
   try {
-    const vendors = await Vendors.findByPk({
-      where: {
-        id: parseInt(req.params.vendorId),
-      },
-    });
+    const vendors = await Vendors.findByPk(parseInt(req.params.vendorId));
     res.json(vendors);
   } catch (error) {
     res.status(500).json({ error: error });
