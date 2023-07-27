@@ -1,21 +1,48 @@
-const express = require('express')
-const router = express.Router()
-const usersController = require('../controllers/users.controller')
-const { verifyToken, checkRole} = require ('../middlewares/auth.middlewares.js')
+const express = require("express");
+const router = express.Router();
+const usersController = require("../controllers/users.controller");
+const {
+  verifyToken,
+  checkRole,
+} = require("../middlewares/auth.middlewares.js");
 
 // TODO: Add middleware declaration here
 
 // add route endpoint here
 
-router.get('/', verifyToken, checkRole(['admin','user']), usersController.getAllUsers)
+router.get(
+  "/",
+  verifyToken,
+  checkRole(["admin", "user", "vendor"]),
+  usersController.getAllUsers
+);
 
-router.get('/:userId',verifyToken, checkRole(['admin','user']), usersController.getUserById)
+router.get(
+  "/:userId",
+  verifyToken,
+  checkRole(["admin", "user", "vendor"]),
+  usersController.getUserById
+);
 
-router.post('/', verifyToken, checkRole(['admin']), usersController.createUser)
+router.post(
+  "/",
+  verifyToken,
+  checkRole(["admin", "user", "vendor"]),
+  usersController.createUser
+);
 
-router.put('/:userId', verifyToken, checkRole(['admin','user']), usersController.updateUser)
+router.put(
+  "/:userId",
+  verifyToken,
+  checkRole(["admin", "user", "vendor"]),
+  usersController.updateUser
+);
 
-router.delete('/:userId', verifyToken, checkRole(['admin','user']), usersController.deleteUser)
+router.delete(
+  "/:userId",
+  verifyToken,
+  checkRole(["admin", "user", "vendor"]),
+  usersController.deleteUser
+);
 
-
-module.exports = router
+module.exports = router;
