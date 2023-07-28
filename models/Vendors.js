@@ -33,7 +33,7 @@ const Vendors = sequelize.define(
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: "updated_at",
+      field: "updatedAt",
     },
   },
   {
