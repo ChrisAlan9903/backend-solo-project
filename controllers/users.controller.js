@@ -23,6 +23,9 @@ async function createUser(req, res) {
   try {
     // TODO: add authorization here--⚠️⚠️
 
+    if (!req.body.username || !req.body.email || !req.body.password)
+      throw "please fill in all the details";
+
     const hashedPassword = hashPassword(req.body.password);
 
     const user = await User.create({
@@ -48,15 +51,14 @@ async function updateUser(req, res) {
     // TODO: add authorization here---⚠️⚠️
     // Permission: User can only update their own user data
 
-    const userId = req.user.id
+    const userId = req.user.id;
     console.log(`userId:`, userId);
-    const userRole = req.user.role
-    const paramsUserId = parseInt(req.params.userId)
+    const userRole = req.user.role;
+    const paramsUserId = parseInt(req.params.userId);
     console.log(`params:`, req.params.userId);
-    if (userRole !== 'admin') {
-      if(paramsUserId !== userId) throw `Update denied: Not your user data`
+    if (userRole !== "admin") {
+      if (paramsUserId !== userId) throw `Update denied: Not your user data`;
     }
-
 
     // console.log(`CP 1`);
     const hashedPassword = hashPassword(req.body.password);
@@ -81,15 +83,15 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
   try {
     // TODO: add authorization here---⚠️⚠️
-      // Permission: User can only delete their own user data
+    // Permission: User can only delete their own user data
 
-    const userId = req.user.id
+    const userId = req.user.id;
     console.log(`userId:`, userId);
-    const userRole = req.user.role
-    const paramsUserId = parseInt(req.params.userId)
+    const userRole = req.user.role;
+    const paramsUserId = parseInt(req.params.userId);
     console.log(`params:`, req.params.userId);
-    if (userRole !== 'admin') {
-      if(paramsUserId !== userId) throw `Delete denied: Not your user data`
+    if (userRole !== "admin") {
+      if (paramsUserId !== userId) throw `Delete denied: Not your user data`;
     }
 
     const deletedUser = await User.destroy({
@@ -104,9 +106,9 @@ async function deleteUser(req, res) {
 }
 
 module.exports = {
-    getAllUsers,
-    getUserById,
-    createUser,
-    updateUser,
-    deleteUser
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
 };

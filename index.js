@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
 
 // Load environment variables. See .env file for available variables.
 // This should be done before loading variables from process.env
@@ -27,9 +28,14 @@ const morganConfig = morgan(function (token, req, res) {
   ].join(" ");
 });
 
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow requests from localhost only
+  methods: "GET,POST,PUT,DELETE", // Allow all types of HTTP methods
+};
 //Middleware
 app.use(express.json());
 app.use(morganConfig);
+app.use(cors(corsOptions));
 
 const sequelize = require("./config/db.config");
 
