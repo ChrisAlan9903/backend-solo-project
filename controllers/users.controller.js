@@ -81,12 +81,13 @@ async function updateUser(req, res) {
     }
 
     // console.log(`CP 1`);
-    const hashedPassword = hashPassword(req.body.password);
+    if (req.body.password) {
+      const hashedPassword = hashPassword(req.body.password);
+    }
     // console.log(`CP 2`);
     const updatedUser = await User.update(
       {
         ...req.body,
-        password: hashedPassword,
       },
       {
         where: {
