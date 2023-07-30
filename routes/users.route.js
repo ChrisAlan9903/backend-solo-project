@@ -23,6 +23,12 @@ router.get(
   checkRole(["admin", "customer", "vendor"]),
   usersController.getUserById
 );
+router.get(
+  "/user",
+  verifyToken,
+  checkRole(["admin", "customer", "vendor"]),
+  usersController.getCurrentUser
+);
 
 router.post(
   "/",

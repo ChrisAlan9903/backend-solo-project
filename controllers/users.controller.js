@@ -19,6 +19,18 @@ async function getUserById(req, res) {
   }
 }
 
+async function getCurrentUser(req, res) {
+  try {
+    console.log(`checkpoint NEW GET REQ`);
+    console.log(`req.user.id:`, req.user.id);
+    const user = await User.findByPk(req.user.id);
+    console.log(`res.user:`, user);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+}
+
 async function createUser(req, res) {
   try {
     // TODO: add authorization here--⚠️⚠️
@@ -108,6 +120,7 @@ async function deleteUser(req, res) {
 module.exports = {
   getAllUsers,
   getUserById,
+  getCurrentUser,
   createUser,
   updateUser,
   deleteUser,
