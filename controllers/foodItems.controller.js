@@ -1,11 +1,30 @@
 const FoodItems = require("../models/FoodItems");
 
 async function getAllFoodItems(req, res) {
-  try {
-    const foods = await FoodItems.findAll();
-    res.json(foods);
-  } catch (error) {
-    res.status(500).json({ error: error });
+  if (req.user.role === "admin" || req.user.role === "customer") {
+    try {
+      const foods = await FoodItems.findAll();
+      res.json(foods);
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  } else if (req.user.role === "vendor") {
+    try {
+      const foods = await FoodItems.findAll({
+        where: {
+          vendorId: req.user.id,
+        },
+      });
+      res.json(foods);
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  } else {
+    try {
+      throw `user role not found !`;
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
   }
 }
 
