@@ -4,6 +4,8 @@ const { hashPassword } = require("../utils/bcrypt.util");
 async function getAllUsers(req, res) {
   try {
     const users = await User.findAll();
+
+    console.log(`CP: passed GET All User`);
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -12,7 +14,10 @@ async function getAllUsers(req, res) {
 
 async function getUserById(req, res) {
   try {
+    console.log(`CP: trying to GET User by Id`);
     const user = await User.findByPk(req.params.userId);
+    console.log(`CP: passed GET User by Id`);
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -21,10 +26,13 @@ async function getUserById(req, res) {
 
 async function getCurrentUser(req, res) {
   try {
-    console.log(`checkpoint NEW GET REQ`);
     console.log(`req.user.id:`, req.user.id);
     const user = await User.findByPk(req.user.id);
+
     console.log(`res.user:`, user);
+
+    console.log(`CP: passed GET Current User`);
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: error });

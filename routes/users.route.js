@@ -23,8 +23,9 @@ router.get(
   checkRole(["admin", "customer", "vendor"]),
   usersController.getUserById
 );
+
 router.get(
-  "/user",
+  "/user/current",
   verifyToken,
   checkRole(["admin", "customer", "vendor"]),
   usersController.getCurrentUser
