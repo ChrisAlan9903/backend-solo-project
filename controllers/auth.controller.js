@@ -71,7 +71,7 @@ async function login(req, res) {
     if (!loginUser) {
       console.log(`checkpoint 2`);
 
-      throw `User does not exists. Let's go and sign up !`;
+      throw `User does not exists. Let's go sign up !`;
     }
 
     console.log(`checkpoint 3`);
