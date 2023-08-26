@@ -29,7 +29,7 @@ const morganConfig = morgan(function (token, req, res) {
 });
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from localhost only
+  origin: ["http://localhost:5173", "http://localhost:5174"], // Allow requests from localhost only
   methods: "GET,POST,PUT,DELETE", // Allow all types of HTTP methods
 };
 //Middleware
