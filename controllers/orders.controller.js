@@ -2,13 +2,21 @@ const Orders = require("../models/Orders");
 
 async function getAllOrders(req, res) {
   try {
+    console.log(`starting fetching data for orders table`);
+    console.log(req.query);
+    console.log(req.user.role);
     if (req.user.role === "admin") {
       const orders = await Orders.findAll();
       res.json(orders);
-    } else if (req.user.role) {
+    } else if (req.user.role === "vendor") {
+      console.log(`req.query:`, req.query);
       const orders = await Orders.findAll({
-        where: {},
+        where: {
+          vendorId: 18,
+        },
       });
+      console.log(`after fetching the orders`);
+      res.json(orders);
     }
   } catch (error) {
     res.status(500).json({ error: error });
