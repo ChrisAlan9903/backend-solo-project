@@ -42,7 +42,7 @@ async function createFoodItem(req, res) {
     const createFood = await FoodItems.create({
       ...req.body,
     });
-    res.json(createFood);
+    res.json({ success: "success", createFood });
   } catch (error) {
     res.status(500).json({ error: error });
   }

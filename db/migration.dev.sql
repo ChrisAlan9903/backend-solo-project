@@ -40,9 +40,11 @@ CREATE TABLE orders (
   userId INT NOT NULL,
   totalAmount DECIMAL(10, 2) NOT NULL,
   orderStatus ENUM('pending', 'completed', 'cancelled') NOT NULL,
+  vendorId INT NOT NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (userId) REFERENCES users(id)
+  FOREIGN KEY (userId) REFERENCES users(id),
+  FOREIGN KEY (vendorId) REFERENCES users(id)
 );
 
 CREATE TABLE order_items (

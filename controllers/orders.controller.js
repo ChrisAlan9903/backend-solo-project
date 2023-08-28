@@ -2,8 +2,14 @@ const Orders = require("../models/Orders");
 
 async function getAllOrders(req, res) {
   try {
-    const orders = await Orders.findAll();
-    res.json(orders);
+    if (req.user.role === "admin") {
+      const orders = await Orders.findAll();
+      res.json(orders);
+    } else if (req.user.role) {
+      const orders = await Orders.findAll({
+        where: {},
+      });
+    }
   } catch (error) {
     res.status(500).json({ error: error });
   }

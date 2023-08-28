@@ -16,14 +16,26 @@ const Orders = sequelize.define(
         model: "users",
         key: "id",
       },
+      field: "userId",
+    },
+    vendorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "users",
+        key: "id",
+      },
+      field: "vendorId",
     },
     totalAmount: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
+      field: "totalAmount",
     },
     orderStatus: {
       type: DataTypes.ENUM("pending", "completed", "cancelled"),
       allowNull: false,
+      field: "orderStatus",
     },
     createdAt: {
       type: DataTypes.DATE,
