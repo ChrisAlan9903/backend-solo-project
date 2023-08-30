@@ -12,7 +12,7 @@ async function getAllOrders(req, res) {
       console.log(`req.query:`, req.query);
       const orders = await Orders.findAll({
         where: {
-          vendorId: 18,
+          vendorId: req.query, // need to check if need to parseInt of not
         },
       });
       console.log(`after fetching the orders`);

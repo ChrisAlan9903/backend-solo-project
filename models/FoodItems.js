@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
+// const OrderItems = require("../models/OrderItems");
 
 const FoodItems = sequelize.define(
   "FoodItems",
@@ -58,5 +59,8 @@ const FoodItems = sequelize.define(
     timestamps: false,
   }
 );
+
+// Define the association to OrderItems
+// FoodItems.hasMany(OrderItems, { foreignKey: "foodItemId" });
 
 module.exports = FoodItems;

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
+// const FoodItems = require("../models/FoodItems");
 
 const OrderItems = sequelize.define(
   "OrderItems",
@@ -20,10 +21,6 @@ const OrderItems = sequelize.define(
     foodItemId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "food_items",
-        key: "id",
-      },
     },
     quantity: {
       type: DataTypes.INTEGER,
@@ -39,5 +36,8 @@ const OrderItems = sequelize.define(
     timestamps: false,
   }
 );
+
+// Define the association to FoodItems
+// OrderItems.belongsTo(FoodItems, { foreignKey: "foodItemId" });
 
 module.exports = OrderItems;

@@ -1,10 +1,40 @@
 const OrderItems = require("../models/OrderItems");
+const FoodItems = require("../models/FoodItems");
+require("../utils/associations");
 
 async function getAllOrderItems(req, res) {
+  const queryOrderId = parseInt(req.query.orderId);
+  console.log(`OrderItem check: req.query.orderItem:`, queryOrderId);
   try {
-    const orderItems = await OrderItems.findAll();
-    res.json(orderItems);
+    if (req.user.role === "admin") {
+      const orderItems = await OrderItems.findAll();
+      res.json(orderItems);
+    } else {
+      const orderItems = await OrderItems.findAll({
+        where: {
+          orderId: parseInt(req.query.orderId),
+        },
+        attributes: ["id", "foodItemId"],
+      });
+
+      //getting all the ids of of orderItems based on the orderId
+      const logData = orderItems.map(async (item) => {
+        const foodName = await FoodItems.findOne({
+          where: {
+            id: item.foodItemId,
+          },
+          attributes: ["name"],
+        });
+        const { name } = foodName;
+        console.log(`foodName:`, name);
+        return { id: item.id, foodItemId: item.foodItemId, foodName: name };
+      });
+
+      console.log(`orderItems output: `, logData);
+      res.json(orderItems);
+    }
   } catch (error) {
+    console.log(`error:`, error);
     res.status(500).json({ error: error });
   }
 }
