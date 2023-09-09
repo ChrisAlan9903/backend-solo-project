@@ -9,28 +9,43 @@ async function getAllOrderItems(req, res) {
     if (req.user.role === "admin") {
       const orderItems = await OrderItems.findAll();
       res.json(orderItems);
-    } else {
+    } else if (req.user.role === "vendor") {
+      const orderItemIds = req.query.foodItemIds.split(",").map((id) => {
+        return parseInt(id, 10);
+      });
+      // const foods = await FoodItems.findAll({
+      //   where: {
+      //     foodItemId: orderItemIds,
+      //   },
+      // });
+
+      console.log(`req.query.foodItemIds:`, req.query.foodItemIds);
+      console.log(`orderItemIds:`, orderItemIds);
+
       const orderItems = await OrderItems.findAll({
         where: {
-          orderId: parseInt(req.query.orderId),
+          foodItemId: orderItemIds, //TODO: change this
         },
-        attributes: ["id", "foodItemId"],
+        // where: {
+        //   orderId: parseInt(req.query.orderId),
+        // },
+        // attributes: ["id", "foodItemId"],
       });
 
       //getting all the ids of of orderItems based on the orderId
-      const logData = orderItems.map(async (item) => {
-        const foodName = await FoodItems.findOne({
-          where: {
-            id: item.foodItemId,
-          },
-          attributes: ["name"],
-        });
-        const { name } = foodName;
-        console.log(`foodName:`, name);
-        return { id: item.id, foodItemId: item.foodItemId, foodName: name };
-      });
+      // const logData = orderItems.map(async (item) => {
+      //   const foodName = await FoodItems.findOne({
+      //     where: {
+      //       id: item.foodItemId,
+      //     },
+      //     attributes: ["name"],
+      //   });
+      //   const { name } = foodName;
+      //   console.log(`foodName:`, name);
+      //   return { id: item.id, foodItemId: item.foodItemId, foodName: name };
+      // });
 
-      console.log(`orderItems output: `, logData);
+      // console.log(`orderItems output: `, logData);
       res.json(orderItems);
     }
   } catch (error) {

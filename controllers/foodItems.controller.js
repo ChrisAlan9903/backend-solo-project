@@ -15,6 +15,7 @@ async function getAllFoodItems(req, res) {
           vendorId: req.user.id,
         },
       });
+
       res.json(foods);
     } catch (error) {
       res.status(500).json({ error: error });
@@ -30,8 +31,15 @@ async function getAllFoodItems(req, res) {
 
 async function getFoodItemById(req, res) {
   try {
-    const foods = await FoodItems.findByPk(parseInt(req.params.foodId));
-    res.json(foods);
+    if (req.user.role === "admin") {
+      const foods = await FoodItems.findByPk(parseInt(req.params.foodId));
+      res.json(foods);
+    } else if (req.user.role === "vendor") {
+      const foods = await FoodItems.findByPk(parseInt(req.params.foodId), {
+        attributes: ["name"],
+      });
+      res.json(foods);
+    }
   } catch (error) {
     res.status(500).json({ error: error });
   }

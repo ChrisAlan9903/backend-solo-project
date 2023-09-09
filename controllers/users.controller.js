@@ -3,10 +3,22 @@ const { hashPassword } = require("../utils/bcrypt.util");
 
 async function getAllUsers(req, res) {
   try {
-    const users = await User.findAll();
+    if (req.user.role === "admin") {
+      const users = await User.findAll();
 
-    console.log(`CP: passed GET All User`);
-    res.json(users);
+      console.log(`CP: passed GET All User`);
+      res.json(users);
+    } else if (req.user.role === "customer") {
+      const vendorsArr = req.query.ids.split(",").map((id) => parseInt(id, 10));
+      console.log(`vendorsArr:`, vendorsArr);
+
+      const users = await User.findAll({
+        where: {
+          id: vendorsArr,
+        },
+      });
+      res.json(users);
+    }
   } catch (error) {
     res.status(500).json({ error: error });
   }

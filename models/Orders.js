@@ -20,7 +20,7 @@ const Orders = sequelize.define(
     },
     vendorId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: "users",
         key: "id",
