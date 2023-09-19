@@ -13,11 +13,6 @@ async function getAllOrderItems(req, res) {
       const orderItemIds = req.query.foodItemIds.split(",").map((id) => {
         return parseInt(id, 10);
       });
-      // const foods = await FoodItems.findAll({
-      //   where: {
-      //     foodItemId: orderItemIds,
-      //   },
-      // });
 
       console.log(`req.query.foodItemIds:`, req.query.foodItemIds);
       console.log(`orderItemIds:`, orderItemIds);
@@ -31,6 +26,11 @@ async function getAllOrderItems(req, res) {
         // },
         // attributes: ["id", "foodItemId"],
       });
+      // const foods = await FoodItems.findAll({
+      //   where: {
+      //     foodItemId: orderItemIds,
+      //   },
+      // });
 
       //getting all the ids of of orderItems based on the orderId
       // const logData = orderItems.map(async (item) => {
