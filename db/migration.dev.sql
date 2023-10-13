@@ -8,6 +8,7 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   role ENUM('admin','customer', 'vendor') DEFAULT 'customer' ,
   address VARCHAR(255), 
+  phone_number VARCHAR(255),
   is_verified BOOLEAN DEFAULT false,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -39,8 +40,8 @@ CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   userId INT NOT NULL,
   totalAmount DECIMAL(10, 2) NOT NULL,
-  orderStatus ENUM('pending', 'completed', 'cancelled') NOT NULL,
-  vendorId INT NOT NULL,
+  orderStatus ENUM('pending', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
+  vendorId INT,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (userId) REFERENCES users(id),
@@ -59,11 +60,13 @@ CREATE TABLE order_items (
 
 CREATE TABLE vendors (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  vendorId INT,
   vendorName VARCHAR(255) NOT NULL,
   address TEXT,
-  vendorInfo TEXT NOT NULL,
+  vendorInfo TEXT,
   contactInfo VARCHAR(255),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (vendorId) REFERENCES users(id)
 );
 
